@@ -5,19 +5,12 @@ class Counter extends Component {
     count: 0,
   }
 
-  // renderTags() {
-  //   if (this.state.tags.length === 0) return <p>No tags</p>
-
-  //   return (
-  //     <ul>
-  //       {this.state.tags.map((tag) => (
-  //         <li key={tag}>{tag}</li>
-  //       ))}
-  //     </ul>
-  //   )
+  // constructor() {
+  //   super()
+  //   this.handleIncrement = this.handleIncrement.bind(this)
   // }
 
-  handleIncrement() {
+  handleIncrement = () => {
     console.log('increment clicked', this.state.count)
   }
 
