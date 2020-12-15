@@ -16,11 +16,6 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    console.log('App - Constructor')
-  }
-
-  componentDidMount() {
-    console.log('App - mounted')
   }
 
   handleIncrement = (counter) => {
@@ -29,6 +24,15 @@ class App extends Component {
 
     counters[index] = { ...counter }
     counters[index].value++
+    this.setState({ counters })
+  }
+
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters]
+    const index = counters.indexOf(counter)
+
+    counters[index] = { ...counter }
+    counters[index].value--
     this.setState({ counters })
   }
 
@@ -46,8 +50,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App - rendered')
-
     return (
       <>
         <Navbar totalCounters={this.state.counters.filter((c) => c.value > 0).length} />
@@ -56,6 +58,7 @@ class App extends Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>
