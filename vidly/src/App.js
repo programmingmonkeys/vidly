@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import Movies from './components/Movies'
 import './App.css'
+
+import Navbar from './components/Navbar'
+import Counters from './components/Counters'
 
 class App extends Component {
   render() {
     return (
-      <main className="container">
-        <Movies />
-      </main>
+      <>
+        <Navbar />
+        <main className="container">
+          <Counters />
+        </main>
+      </>
     )
   }
 }
