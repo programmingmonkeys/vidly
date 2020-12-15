@@ -5,21 +5,19 @@ class Counter extends Component {
     count: 0,
   }
 
-  // constructor() {
-  //   super()
-  //   this.handleIncrement = this.handleIncrement.bind(this)
-  // }
-
   handleIncrement = () => {
-    console.log('increment clicked', this.state.count)
+    this.setState({ count: this.state.count + 1 })
   }
-
-  formatCount() {}
 
   getBadgeClasses() {
     let classes = 'badge m-2 badge-'
     classes += this.state.count === 0 ? 'warning' : 'primary'
     return classes
+  }
+
+  formatCount() {
+    const { count } = this.state
+    return count === 0 ? <h1>Zero</h1> : count
   }
 
   render() {
