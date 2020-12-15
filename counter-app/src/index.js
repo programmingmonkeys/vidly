@@ -4,7 +4,7 @@ import './index.css'
 
 import reportWebVitals from './reportWebVitals'
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Counter from './components/Counter'
 
 ReactDOM.render(
