@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
 
-import Navbar from './components/Navbar'
-import Counters from './components/Counters'
+// import Navbar from './components/Navbar'
+// import Counters from './components/Counters'
+import Movies from './components/Movies'
 
 class App extends Component {
   state = {
@@ -52,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Navbar totalCounters={this.state.counters.filter((c) => c.value > 0).length} />
+        {/* <Navbar totalCounters={this.state.counters.filter((c) => c.value > 0).length} />
         <main className="container">
           <Counters
             counters={this.state.counters}
@@ -61,7 +62,8 @@ class App extends Component {
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
-        </main>
+        </main> */}
+        <Movies />
       </>
     )
   }
