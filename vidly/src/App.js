@@ -1,11 +1,15 @@
+import React, { Component } from 'react'
+import Movies from './components/Movies'
 import './App.css'
 
-function App() {
-  return (
-    <main class="container">
-      <h1>hello</h1>
-    </main>
-  )
+class App extends Component {
+  render() {
+    return (
+      <main className="container">
+        <Movies />
+      </main>
+    )
+  }
 }
 
 export default App
