@@ -15,7 +15,7 @@ class Movies extends Component {
   }
 
   componentDidMount() {
-    const genres = [{ name: 'All Genres' }, ...getGenres()]
+    const genres = [{ _id: '', name: 'All Genres' }, ...getGenres()]
     this.setState({ movies: getMovies(), genres })
   }
 
@@ -42,6 +42,10 @@ class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 })
   }
 
+  handleSort = (path) => {
+    console.log(path)
+  }
+
   render() {
     const { length: count } = this.state.movies
     const { pageSize, currentPage, selectedGenre, movies: allMovies } = this.state
@@ -63,7 +67,7 @@ class Movies extends Component {
         </div>
         <div className="col">
           <p>Showing {filtered.length} movies in the database.</p>
-          <MoviesTable movies={movies} onLike={this.handleLike} onDelete={this.handleDelete} />
+          <MoviesTable movies={movies} onLike={this.handleLike} onDelete={this.handleDelete} onSort={this.handleSort} />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
