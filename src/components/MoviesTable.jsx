@@ -27,7 +27,7 @@ class MoviesTable extends Component {
     return (
       <table className="table">
         <TableHeader columns={this.columns} sortColumn={sortColumn} onSort={onSort} />
-        <TableBody data={movies} />
+        <TableBody data={movies} columns={this.columns} />
       </table>
     )
   }

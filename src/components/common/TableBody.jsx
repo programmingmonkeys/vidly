@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 
 class TableBody extends Component {
@@ -8,10 +8,13 @@ class TableBody extends Component {
     return _.get(item, column.path)
   }
 
-  createKey = (item, column) => item._id + (column.id || column.key)
+  createKey = (item, column) => {
+    return item._id + (column.path || column.key)
+  }
 
   render() {
     const { data, columns } = this.props
+    // console.log('props', this.props)
 
     return (
       <tbody>
