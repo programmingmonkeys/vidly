@@ -3,7 +3,7 @@
   "jsx-quotes": [2, "prefer-single"],
   "semi": false,
   "bracketSpacing": true,
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "trailingComma": "all",
   "printWidth": 120,
   "object-curly-spacing": [2, "always"],
