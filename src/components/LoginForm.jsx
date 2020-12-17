@@ -9,16 +9,23 @@ class LoginForm extends Component {
   }
 
   validate = () => {
-    return {
-      username: 'username is required',
-    }
+    const errors = {}
+
+    const { account } = this.state
+
+    if (account.username.trim() === '') errors.username = 'Username is required'
+    if (account.password.trim() === '') errors.password = 'Password is required'
+
+    return Object.keys(errors).length === 0 ? null : errors
   }
 
   handleSubmit = e => {
-    console.log('fired')
     e.preventDefault()
 
+    console.log('fired')
+
     const errors = this.validate()
+    console.log(errors)
     this.setState({ errors })
 
     if (errors) return
@@ -39,8 +46,18 @@ class LoginForm extends Component {
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <Input name="username" value={account.username} label="Username" onChange={this.handleChange} />
-          <Input name="password" value={account.password} label="Password" onChange={this.handleChange} />
+          <Input
+            name="username"
+            value={account.username}
+            label="Username"
+            onChange={this.handleChange}
+          />
+          <Input
+            name="password"
+            value={account.password}
+            label="Password"
+            onChange={this.handleChange}
+          />
         </form>
         <button className="btn btn-primary">Login</button>
       </div>

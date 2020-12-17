@@ -5,7 +5,7 @@
   "bracketSpacing": true,
   "arrowParens": "avoid",
   "trailingComma": "all",
-  "printWidth": 120,
+  "printWidth": 100,
   "object-curly-spacing": [2, "always"],
   "spaced-comment": "off",
   "no-console": "warn",
