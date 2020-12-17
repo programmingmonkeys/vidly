@@ -9,27 +9,25 @@ class LoginForm extends Component {
   }
 
   schema = {
-    username: Joi.string().required(),
-    password: Joi.string().required(),
+    username: Joi.string().required().label('Username'),
+    password: Joi.string().required().label('Password'),
   }
 
   validate = () => {
-    const result = Joi.validate(this.state.account, this.schema, { abortEarly: false })
-    console.log(result)
+    const options = { abortEarly: false }
+    const { error } = Joi.validate(this.state.account, this.schema, options)
+
+    if (!error) return null
 
     const errors = {}
-
-    const { account } = this.state
-
-    if (account.username.trim() === '') errors.username = 'Username is required'
-    if (account.password.trim() === '') errors.password = 'Password is required'
-
-    return Object.keys(errors).length === 0 ? null : errors
+    for (let item of error.details) errors[item.path[0]] = item.message
+    return errors
   }
 
   handleSubmit = e => {
     e.preventDefault()
     console.log('submit button fired')
+
     const errors = this.validate()
 
     this.setState({ errors: errors || {} })
@@ -45,14 +43,16 @@ class LoginForm extends Component {
   }
 
   handleChange = ({ currentTarget: input }) => {
+    console.log('change fired')
     const errors = { ...this.state.errors }
     const errorMessage = this.validateProperty(input)
     if (errorMessage) errors[input.name] = errorMessage
     else delete errors[input.name]
 
-    const account = { ...this.state.account }
-    account[input.name] = input.value
-    this.setState({ account, errors })
+    const data = { ...this.state.data }
+    data[input.name] = input.value
+
+    this.setState({ data, errors })
   }
 
   render() {
