@@ -7,6 +7,8 @@ import { getGenres } from '../services/fakeGenreService'
 import ListGroup from './common/ListGroup'
 import _ from 'lodash'
 
+import { Link } from 'react-router-dom'
+
 class Movies extends Component {
   state = {
     movies: [],
@@ -52,7 +54,9 @@ class Movies extends Component {
     const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies } = this.state
 
     const filtered =
-      selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+        : allMovies
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
 
@@ -79,6 +83,9 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
+          <Link to="/movies/new" className="btn btn-primary" style={{ marginBottom: 20 }}>
+            New Movie
+          </Link>
           <p>Showing {totalCount} movies in the database.</p>
           <MoviesTable
             movies={movies}
