@@ -46,7 +46,7 @@ class Movies extends Component {
   }
 
   handleGenreSelect = genre => {
-    this.setState({ selectedGenre: genre, currentPage: 1 })
+    this.setState({ selectedGenre: genre, searchQuery: '', currentPage: 1 })
   }
 
   handleSearch = query => {
@@ -82,11 +82,11 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies
-    const { pageSize, currentPage, sortColumn } = this.state
+    const { pageSize, currentPage, sortColumn, searchQuery } = this.state
 
-    if (count === 0) return <p>There are no movies in the database</p>
+    if (count === 0) return <p>There are no movies in the database.</p>
 
-    const { totalCount, data: movies } = this.getPageData()
+    const { totalCount, data: movies } = this.getPagedData()
 
     return (
       <div className="row">
