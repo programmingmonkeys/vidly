@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 
+// Components
 import NavBar from './components/NavBar'
 import MovieForm from './components/MovieForm'
 import Movies from './components/Movies'
@@ -12,10 +13,15 @@ import RegisterForm from './components/RegisterForm'
 
 import './App.css'
 
+// Toast
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 class App extends Component {
   render() {
     return (
       <>
+        <ToastContainer />
         <NavBar />
         <div className="container">
           <Switch>
