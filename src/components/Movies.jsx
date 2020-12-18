@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import MoviesTable from './MoviesTable'
 import Pagination from './common/Pagination'
-import { getMovies } from '../services/fakeMovieService'
+import { getMovies, deleteMovie } from '../services/MovieService'
 import { paginate } from '../utils/paginate'
 import { getGenres } from '../services/GenreService'
 import ListGroup from './common/ListGroup'
 import SearchBox from './SearchBox'
 import _ from 'lodash'
+import { toast } from 'react-toastify'
 
 import { Link } from 'react-router-dom'
 
@@ -24,17 +25,26 @@ class Movies extends Component {
   async componentDidMount() {
     const { data } = await getGenres()
     const genres = [{ _id: '', name: 'All Genres' }, ...data]
-    this.setState({ movies: getMovies(), genres })
+
+    const { data: movies } = await getMovies()
+    this.setState({ movies, genres })
   }
 
-  handleDelete = movie => {
-    // console.log(movie)
-    const movies = this.state.movies.filter(m => m._id !== movie._id)
+  handleDelete = async movie => {
+    const origMovies = this.state.movies
+
+    const movies = origMovies.filter(m => m._id !== movie._id)
     this.setState({ movies })
+
+    try {
+      await deleteMovie(movie._id)
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) toast.error('Movie already deleted')
+      this.setState({ movies: origMovies })
+    }
   }
 
   handleLike = movie => {
-    // console.log(movie)
     const movies = [...this.state.movies]
     const index = movies.indexOf(movie)
     movies[index] = { ...movies[index] }
@@ -122,4 +132,5 @@ class Movies extends Component {
     )
   }
 }
+
 export default Movies
