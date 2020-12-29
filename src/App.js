@@ -12,6 +12,7 @@ import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import Logout from './components/Logout'
 import { getCurrentUser } from './services/authService'
+import ProtectedRoute from './components/common/ProtectedRoute'
 
 // CSS
 import './App.css'
@@ -41,13 +42,7 @@ class App extends Component {
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
-            <Route
-              path="/movies/:id"
-              render={props => {
-                if (!user) return <Redirect to="/login" />
-                return <MovieForm {...props} />
-              }}
-            />
+            <ProtectedRoute path="/movies/:id" component={MovieForm} />
             <Route path="/movies" render={props => <Movies {...props} user={this.state.user} />} />
             <Route path="/customers" component={Customers}></Route>
             <Route path="/rentals" component={Rentals}></Route>
