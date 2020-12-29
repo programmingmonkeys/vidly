@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { getJwt } from './authService'
 import logger from './LogService'
+
+axios.defaults.headers.common['x-auth-token'] = getJwt()
 
 axios.interceptors.response.use(null, error => {
   const er = error.response
@@ -15,6 +18,7 @@ axios.interceptors.response.use(null, error => {
   return Promise.reject(error)
 })
 
+// eslint-disable-next-line
 export default {
   get: axios.get,
   post: axios.post,
