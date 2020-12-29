@@ -10,6 +10,7 @@ import Rentals from './components/Rentals'
 import NotFound from './components/NotFound'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import Logout from './components/Logout'
 
 // CSS
 import './App.css'
@@ -41,7 +42,8 @@ class App extends Component {
         <div className="container">
           <Switch>
             <Route path="/register" component={RegisterForm} />
-            <Route path="/login/" component={LoginForm} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/logout" component={Logout} />
             <Route path="/movies/:id" component={MovieForm} />
             <Route path="/movies" component={Movies}></Route>
             <Route path="/customers" component={Customers}></Route>
