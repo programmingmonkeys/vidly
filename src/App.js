@@ -11,18 +11,32 @@ import NotFound from './components/NotFound'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 
+// CSS
 import './App.css'
 
 // Toast
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+// JWT
+import jwtDecode from 'jwt-decode'
+
 class App extends Component {
+  state = {}
+
+  componentDidMount() {
+    try {
+      const jwt = localStorage.getItem('token')
+      const user = jwtDecode(jwt)
+      // console.log(user)
+      this.setState({ user })
+    } catch (error) {}
+  }
   render() {
     return (
       <>
         <ToastContainer />
-        <NavBar />
+        <NavBar user={this.state.user} />
         <div className="container">
           <Switch>
             <Route path="/register" component={RegisterForm} />
