@@ -32,6 +32,7 @@ class App extends Component {
       this.setState({ user })
     } catch (error) {}
   }
+
   render() {
     return (
       <>
