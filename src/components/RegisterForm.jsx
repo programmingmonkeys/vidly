@@ -3,6 +3,8 @@ import Joi from 'joi-browser'
 import Form from './common/Form'
 import * as userService from '../services/UserService'
 
+import {loginWithJwt} from '../services/authService'
+
 class RegisterForm extends Form {
   state = {
     data: { username: '', password: '', name: '' },
@@ -18,7 +20,7 @@ class RegisterForm extends Form {
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data)  
-      localStorage.setItem('token', response.headers['x-auth-token'])
+      loginWithJwt(response.headers['x-auth-token'])
       window.location = '/' // this.props.history.push('/')
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
